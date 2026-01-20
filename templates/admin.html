@@ -5,8 +5,17 @@
 {% block content %}
 <section class="page-hero">
     <div class="container">
-        <h1 class="page-title">Painel Administrativo</h1>
-        <p class="page-subtitle">Gerencie reservas, depoimentos e galeria</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h1 class="page-title">Painel Administrativo</h1>
+                <p class="page-subtitle">Gerencie reservas, depoimentos e galeria</p>
+            </div>
+            <div>
+                <a href="{{ url_for('admin_logout') }}" class="btn btn-secondary" style="text-decoration: none;">
+                    🔓 Sair
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -62,6 +71,10 @@
             <form method="POST" action="{{ url_for('add_testimonial') }}" class="admin-form">
                 <div class="form-row">
                     <div class="form-group">
+                        <label>Nome do Cliente</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
                         <label>Avaliação</label>
                         <select name="rating" required>
                             <option value="5">5 Estrelas</option>
@@ -102,6 +115,10 @@
             <form method="POST" action="{{ url_for('add_video') }}" enctype="multipart/form-data" class="admin-form">
                 <div class="form-row">
                     <div class="form-group">
+                        <label>Nome do Cliente</label>
+                        <input type="text" name="name" required placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="form-group">
                         <label>Avaliação</label>
                         <select name="rating" required>
                             <option value="5">5 Estrelas</option>
@@ -109,6 +126,11 @@
                             <option value="3">3 Estrelas</option>
                         </select>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Título do Depoimento</label>
+                    <input type="text" name="title" required placeholder="Ex: Experiência Inesquecível!">
                 </div>
                 
                 <div class="upload-method-selector">
