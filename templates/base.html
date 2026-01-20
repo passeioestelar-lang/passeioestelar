@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Stars Background (sempre no fundo) -->
+    <!-- Stars Background -->
     <div class="stars-container">
         <div class="stars"></div>
         <div class="stars2"></div>
         <div class="stars3"></div>
     </div>
 
-    <!-- Navigation (sempre no topo) -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ url_for('index') }}" class="logo">
@@ -54,43 +54,34 @@
         {% endif %}
     {% endwith %}
 
-    <!-- Main Content Wrapper -->
-    <div class="page-wrapper">
-        <main class="main-content">
-            {% block content %}{% endblock %}
-        </main>
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-grid">
-                    <div class="footer-section">
-                        <h3 class="footer-title">Passeio Estelar</h3>
-                        <p class="footer-text">Explorando os mistérios do céu e da terra na Chapada dos Veadeiros</p>
-                        <div class="footer-social">
-                            <a href="https://www.instagram.com/passeioestelar?igsh=MTdxeHNpZzd2YTBicQ%3D%3D&utm_source=qr" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">WhatsApp</a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h4 class="footer-subtitle">Contato</h4>
-                        <p class="footer-text"><a href="mailto:passeioestelar@gmail.com">passeioestelar@gmail.com</a></p>
-                        <p class="footer-text">+55 (21) 9 93199107 - (34) 9 91620086</p>
-                        <p class="footer-text">Alto Paraíso de Goiás - GO</p>
-                    </div>
-                    <div class="footer-section">
-                        <h4 class="footer-subtitle">Horários</h4>
-                        <p class="footer-text">Tours noturnos sob agendamento</p>
-                        <p class="footer-text">Consulte disponibilidade</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-title">Passeio Estelar</h3>
+                    <p class="footer-text">Explorando os mistérios do céu e da terra na Chapada dos Veadeiros</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/passeioestelar?igsh=MTdxeHNpZzd2YTBicQ%3D%3D&utm_source=qr" class="social-link" target="_blank">Instagram</a>
+                        <a href="https://wa.me/5534991620086" class="social-link" target="_blank">WhatsApp</a>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Passeio Estelar. Todos os direitos reservados.</p>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contato</h4>
+                    <p class="footer-text"><a href="mailto:passeioestelar@gmail.com" style="color: inherit; text-decoration: none;">passeioestelar@gmail.com</a></p>
+                    <p class="footer-text">+55 (21) 9 93199107 - (34) 9 91620086</p>
+                    <p class="footer-text">Alto Paraíso de Goiás - GO</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Horários</h4>
+                    <p class="footer-text">Tours noturnos sob agendamento</p>
+                    <p class="footer-text">Consulte disponibilidade</p>
                 </div>
             </div>
-        </footer>
-    </div>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passeio Estelar. Todos os direitos reservados.</
