@@ -18,7 +18,7 @@
                 
                 <div class="info-block">
                     <h3>📅 Disponibilidade</h3>
-                    <p>Tours noturnos são realizados de quarta a domingo, sujeito a condições climáticas favoráveis.</p>
+                    <p>Tours noturnos são realizados todos os dias, sujeito a condições climáticas favoráveis e formações de grupo.</p>
                 </div>
 
                 <div class="info-block">
@@ -29,15 +29,14 @@
                 <div class="info-block">
                     <h3>💰 Valores</h3>
                     <ul>
-                        <li>R$ 250 por pessoa (grupos de 2-3 pessoas)</li>
-                        <li>R$ 200 por pessoa (grupos de 4 ou mais pessoas)</li>
+                        <li>A partir R$ 180 por pessoa (grupos acima de 2 pessoas)</li>
                     </ul>
                 </div>
 
                 <div class="info-block">
                     <h3>📞 Contato Direto</h3>
-                    <p>WhatsApp: +55 (62) 9 9999-9999</p>
-                    <p>Email: contato@chapada-mistica.com.br</p>
+                    <p>WhatsApp: <a href="https://wa.me/5534991620086" target="_blank" style="color: #00d4ff; text-decoration: none;">+55 (34) 9 9162-0086</a></p>
+                    <p>Email: <a href="mailto:passeioestelar@gmail.com" style="color: #00d4ff; text-decoration: none;">passeioestelar@gmail.com</a></p>
                 </div>
 
                 <div class="info-block">
@@ -47,7 +46,7 @@
             </div>
 
             <div class="booking-form-container">
-                <form method="POST" action="{{ url_for('booking') }}" class="booking-form">
+                <form id="bookingForm" class="booking-form">
                     <h3>Preencha o Formulário</h3>
                     
                     <div class="form-group">
@@ -83,11 +82,11 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
-                        Enviar Solicitação de Reserva
+                        Enviar para WhatsApp
                     </button>
 
                     <p class="form-note">
-                        * Após enviar, entraremos em contato em até 24h para confirmar a disponibilidade e finalizar sua reserva.
+                        * Ao clicar, você será redirecionado para o WhatsApp com sua mensagem já formatada.
                     </p>
                 </form>
             </div>
@@ -244,4 +243,52 @@
     }
 }
 </style>
+
+<script>
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Pegar valores do formulário
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const date = document.getElementById('date').value;
+    const people = document.getElementById('people').value;
+    const message = document.getElementById('message').value;
+    
+    // Formatar data para PT-BR
+    const dateObj = new Date(date + 'T00:00:00');
+    const formattedDate = dateObj.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    
+    // Montar mensagem formatada para WhatsApp
+    let whatsappMessage = `🌟 *SOLICITAÇÃO DE RESERVA - PASSEIO ESTELAR* 🌟\n\n`;
+    whatsappMessage += `👤 *Nome:* ${name}\n`;
+    whatsappMessage += `📧 *Email:* ${email}\n`;
+    whatsappMessage += `📱 *Telefone:* ${phone}\n`;
+    whatsappMessage += `📅 *Data Preferida:* ${formattedDate}\n`;
+    whatsappMessage += `👥 *Número de Pessoas:* ${people}\n`;
+    
+    if (message) {
+        whatsappMessage += `\n💬 *Mensagem:*\n${message}\n`;
+    }
+    
+    whatsappMessage += `\n✨ _Aguardo confirmação da disponibilidade!_`;
+    
+    // Codificar mensagem para URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // Número do WhatsApp (formato internacional sem + e sem espaços)
+    const whatsappNumber = '5534991620086';
+    
+    // Criar URL do WhatsApp
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Abrir WhatsApp em nova aba
+    window.open(whatsappURL, '_blank');
+});
+</script>
 {% endblock %}
