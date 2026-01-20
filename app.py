@@ -1,11 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from datetime import datetime
 from werkzeug.utils import secure_filename
+from werkzeug.security import check_password_hash, generate_password_hash
+from functools import wraps
 import os
 import json
 
 app = Flask(__name__)
 app.secret_key = 'chapada-veadeiros-secret-key-2025'
+
+# Credenciais de admin (MUDE A SENHA!)
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD_HASH = generate_password_hash('P@ssE10_E5t3l@r-26')  # MUDE ESTA SENHA!
 
 # Configurações de upload
 UPLOAD_FOLDER = 'static/uploads'
@@ -49,6 +55,16 @@ def save_data(filename, data):
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+def login_required(f):
+    """Decorator para proteger rotas que requerem login"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            flash('Por favor, faça login para acessar esta página.', 'error')
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/')
 def index():
     """Página principal"""
@@ -72,6 +88,31 @@ def experiencias():
     """Página de experiências reais (vídeo depoimentos)"""
     video_testimonials = load_data('video_testimonials.json')
     return render_template('experiencias.html', videos=video_testimonials)
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    """Página de login do admin"""
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username == ADMIN_USERNAME and check_password_hash(ADMIN_PASSWORD_HASH, password):
+            session['logged_in'] = True
+            session['username'] = username
+            flash('Login realizado com sucesso!', 'success')
+            return redirect(url_for('admin'))
+        else:
+            flash('Usuário ou senha incorretos!', 'error')
+    
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    """Faz logout do admin"""
+    session.pop('logged_in', None)
+    session.pop('username', None)
+    flash('Logout realizado com sucesso!', 'success')
+    return redirect(url_for('index'))
 
 @app.route('/reservar', methods=['GET', 'POST'])
 def booking():
@@ -98,6 +139,7 @@ def booking():
     return render_template('booking.html')
 
 @app.route('/admin')
+@login_required
 def admin():
     """Painel administrativo (básico)"""
     bookings = load_data('bookings.json')
@@ -112,6 +154,7 @@ def admin():
                          videos=video_testimonials)
 
 @app.route('/admin/add-testimonial', methods=['POST'])
+@login_required
 def add_testimonial():
     """Adiciona depoimento"""
     testimonial = {
@@ -130,6 +173,7 @@ def add_testimonial():
     return redirect(url_for('admin'))
 
 @app.route('/admin/add-gallery', methods=['POST'])
+@login_required
 def add_gallery():
     """Adiciona item à galeria (upload de arquivo ou URL)"""
     try:
@@ -183,6 +227,7 @@ def add_gallery():
     return redirect(url_for('admin'))
 
 @app.route('/admin/delete-gallery/<item_id>', methods=['POST'])
+@login_required
 def delete_gallery(item_id):
     """Deleta item da galeria"""
     try:
@@ -222,6 +267,7 @@ def delete_gallery(item_id):
     return redirect(url_for('admin'))
 
 @app.route('/admin/add-video', methods=['POST'])
+@login_required
 def add_video():
     """Adiciona vídeo depoimento"""
     try:
@@ -278,6 +324,7 @@ def add_video():
     return redirect(url_for('admin'))
 
 @app.route('/admin/delete-video/<video_id>', methods=['POST'])
+@login_required
 def delete_video(video_id):
     """Deleta vídeo depoimento"""
     try:
