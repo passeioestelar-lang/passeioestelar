@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">✦ Experiência Única na Chapada dos Veadeiros ✦</div>
+        <h1 class="hero-title">
+            Entre Estrelas,<br>
+            <span class="hero-title-accent">Mistérios</span> e<br>
+            <span class="hero-title-accent">Lendas</span>
+        </h1>
+        <p class="hero-subtitle">
+            Um passeio noturno que combina ufologia, astronomia, cultura local e fotografia
+            sob o céu mais estrelado do Brasil
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Passeio</a>
+            <a href="#experiencia" class="btn btn-secondary">Saiba Mais</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span></span>
+        <div class="scroll-indicator"></div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="experience" id="experiencia">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">O Passeio</span>
+            <h2 class="section-title">Uma Jornada Inesquecível</h2>
+            <p class="section-subtitle">
+                Mergulhe em uma experiência única que une ciência, mística e natureza
+            </p>
+        </div>
+
+        <div class="experience-grid">
+            <div class="experience-card" data-delay="0">
+                <div class="card-icon">🛸</div>
+                <h3 class="card-title">Ufologia</h3>
+                <p class="card-text">
+                    Histórias fascinantes sobre avistamentos na Chapada dos Veadeiros,
+                    uma das regiões com maior concentração de relatos ufológicos do Brasil
+                </p>
+            </div>
+
+            <div class="experience-card" data-delay="1">
+                <div class="card-icon">⭐</div>
+                <h3 class="card-title">Astronomia</h3>
+                <p class="card-text">
+                    Observação do céu com orientação profissional, identificação de
+                    constelações, planetas e fenômenos celestes incríveis
+                </p>
+            </div>
+
+            <div class="experience-card" data-delay="2">
+                <div class="card-icon">🏔️</div>
+                <h3 class="card-title">Cultura Local</h3>
+                <p class="card-text">
+                    Lendas, histórias e tradições da Chapada contadas por quem conhece
+                    profundamente a energia e o misticismo deste lugar sagrado
+                </p>
+            </div>
+
+            <div class="experience-card" data-delay="3">
+                <div class="card-icon">📸</div>
+                <h3 class="card-title">Fotografia Noturna</h3>
+                <p class="card-text">
+                    Sessão de fotos profissionais com as estrelas, capturando momentos
+                    mágicos que ficarão para sempre na sua memória
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Highlights Section -->
+<section class="highlights">
+    <div class="container">
+        <div class="highlights-content">
+            <div class="highlights-text">
+                <h2 class="highlights-title">Por que a Chapada dos Veadeiros?</h2>
+                <div class="highlights-list">
+                    <div class="highlight-item">
+                        <span class="highlight-number">01</span>
+                        <div class="highlight-content">
+                            <h3>Céu Privilegiado</h3>
+                            <p>Um dos lugares com menor poluição luminosa do Brasil, ideal para observação astronômica</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">02</span>
+                        <div class="highlight-content">
+                            <h3>Portal Energético</h3>
+                            <p>Região conhecida mundialmente por sua energia especial e relatos místicos centenários</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">03</span>
+                        <div class="highlight-content">
+                            <h3>Guias Especializados</h3>
+                            <p>Profissionais apaixonados pela região, com conhecimento profundo em astronomia e cultura local</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="highlights-image">
+                <div class="image-frame">
+                    <img src="{{ url_for('static', filename='images/chapada_inicial.jpeg') }}"
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+{% if testimonials %}
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Depoimentos</span>
+            <h2 class="section-title">Experiências Reais</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials[-6:] %}
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    {% for i in range(testimonial.rating) %}★{% endfor %}
+                </div>
+                <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                <div class="testimonial-author">
+                    <strong>{{ testimonial.name }}</strong>
+                    <span>{{ testimonial.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Gallery Preview -->
+{% if gallery %}
+<section class="gallery-preview">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Galeria</span>
+            <h2 class="section-title">Momentos Capturados</h2>
+        </div>
+
+        <div class="gallery-grid">
+            {% for item in gallery[-4:] %}
+            <div class="gallery-item">
+                <img src="{{ item.url }}" alt="{{ item.title }}">
+                <div class="gallery-overlay">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="gallery-cta">
+            <a href="{{ url_for('gallery') }}" class="btn btn-secondary">Ver Galeria Completa</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Pronto para uma Experiência Transcendental?</h2>
+            <p class="cta-text">
+                Reserve seu passeio e prepare-se para uma noite que mudará sua percepção
+                sobre o universo e nosso lugar nele
+            </p>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary btn-large">Fazer Reserva</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

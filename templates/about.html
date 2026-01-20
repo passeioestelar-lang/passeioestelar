@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre o Passeio Estelar{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1 class="page-title">Sobre o Passeio</h1>
+        <p class="page-subtitle">Uma experiência que une ciência, misticismo e natureza</p>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        <div class="about-intro">
+            <h2>Uma Jornada Inesquecível</h2>
+            <p>
+                A Chapada dos Veadeiros é reconhecida mundialmente como um portal energético e 
+                um dos lugares com maior incidência de avistamentos de OVNIs no Brasil. Nosso 
+                passeio noturno foi cuidadosamente desenvolvido para proporcionar uma experiência 
+                única que combina conhecimento científico, histórias místicas e a beleza natural 
+                incomparável da região.
+            </p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-section">
+                <div class="about-icon">🌌</div>
+                <h3>O Que Você Vai Experimentar</h3>
+                <ul class="about-list">
+                    <li><strong>Observação Astronômica:</strong> Identificação de constelações, planetas e fenômenos celestes</li>
+                    <li><strong>Histórias de Ufologia:</strong> Relatos fascinantes de avistamentos históricos na região</li>
+                    <li><strong>História da Chapada:</strong> Lendas, mitos, cristais e locais místicos da Chapada</li>
+                    <li><strong>Fotografia Noturna:</strong> Sessão de fotos com as estrelas como cenário</li>
+                    <li><strong>Meditação Guiada:</strong> Momento de conexão com a energia do local</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <div class="about-icon">⏰</div>
+                <h3>Programação do Passeio</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-time"> 03:40 - 04h</span>
+                        <div class="timeline-content">
+                            <h4>Encontro e Preparação</h4>
+                            <p>Apresentação da equipe</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time"></span>
+                        <div class="timeline-content">
+                            <h4>Início da Jornada</h4>
+                            <p>Fotografia noturna e Astronomia</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time"></span>
+                        <div class="timeline-content">
+                            <h4>Histórias e Observação</h4>
+                            <p>Compartilhamento de relatos ufológicos e observação do céu</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time"></span>
+                        <div class="timeline-content">
+                            <h4>Histórias da Chapada</h4>
+                            <p>Compartilhamento de histórias do local</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">05:40 - 06h</span>
+                        <div class="timeline-content">
+                            <h4>Nascer do sol</h4>
+                            <p>Momento meditação e conexão</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-info">
+            <div class="info-card">
+                <h3>📋 O Que Está Incluído</h3>
+                <ul>
+                    <li>Guia em astronomia e ufologia</li>
+                    <li>Equipamento de observação astronômica</li>
+                    <li>Sessão de fotografia noturna</li>
+                    <li>Fotos digitais em alta resolução</li>
+                    <li>Condução de conexão e meditação no nascer do sol com terapeuta</li>
+                    <li>Transporte do ponto de encontro ao local (há conferir vagas e disponibilidade)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🎒 O Que Você Deve Trazer</h3>
+                <ul>
+                    <li>Roupas confortáveis e quentes</li>
+                    <li>Calçado fechado</li>
+                    <li>Remédio (caso esteja medicando)</li>
+                    <li>Água</li>
+                    <li>Repelente</li>
+                    <li>Espírito aberto e curiosidade!</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>💰 Investimento</h3>
+                <p><strong> A partir de R$ 180,00 por pessoa</strong></p>
+                <p class="info-detail">Grupos de atẽ de 12 pessoas</p>
+                <p class="info-detail">Duração: aproximadamente 2 atẽ 3 horas</p>
+                <p class="info-detail">Mínimo: 2 pessoas | Máximo: 12 pessoas</p>
+            </div>
+        </div>
+
+        <div class="about-cta">
+            <h2>Pronto para Viver Esta Experiência?</h2>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary btn-large">Fazer Reserva Agora</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.page-hero {
+    padding: 10rem 0 6rem;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.page-subtitle {
+    font-size: 1.3rem;
+    color: var(--color-text-dim);
+}
+
+.about-content {
+    padding: 4rem 0;
+}
+
+.about-intro {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.about-intro h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.about-intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-text-dim);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.about-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.about-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.about-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.about-list li {
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--color-text-dim);
+}
+
+.about-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+}
+
+.timeline-time {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.timeline-content h4 {
+    font-family: var(--font-display);
+    margin-bottom: 0.3rem;
+}
+
+.timeline-content p {
+    color: var(--color-text-dim);
+    font-size: 0.95rem;
+}
+
+.about-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.info-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.info-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.info-card li {
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-text-dim);
+}
+
+.info-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.info-card p {
+    margin-bottom: 0.8rem;
+}
+
+.info-detail {
+    font-size: 0.95rem;
+    color: var(--color-text-dim);
+}
+
+.about-cta {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.about-cta h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-item {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

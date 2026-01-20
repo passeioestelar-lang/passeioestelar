@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Maria Silva",
+    "text": "Uma experiência inesquecível! Ver as estrelas na Chapada enquanto ouvíamos histórias sobre UFOs foi mágico.",
+    "rating": 5,
+    "date": "15/01/2025"
+  },
+  {
+    "id": 2,
+    "name": "João Santos",
+    "text": "O guia é incrível! As fotos noturnas ficaram espetaculares e as histórias da região são fascinantes.",
+    "rating": 5,
+    "date": "10/01/2025"
+  }
+]

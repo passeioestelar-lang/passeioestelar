@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Experiências Reais - Passeio Estelar{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1 class="page-title">Experiências Reais</h1>
+        <p class="page-subtitle">Veja o que nossos clientes têm a dizer sobre o passeio</p>
+    </div>
+</section>
+
+<section class="video-testimonials">
+    <div class="container">
+        {% if videos %}
+        <div class="videos-grid">
+            {% for video in videos %}
+            <div class="video-card" data-video-id="{{ video.id }}">
+                <div class="video-wrapper">
+                    {% if video.uploaded %}
+                        <!-- Vídeo local -->
+                        <video controls preload="metadata" poster="{{ video.thumbnail or '' }}">
+                            <source src="{{ video.url }}" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    {% else %}
+                        <!-- Vídeo externo (YouTube, Vimeo, etc) -->
+                        {% if 'youtube.com' in video.url or 'youtu.be' in video.url %}
+                            <!-- YouTube embed -->
+                            {% set video_id = video.url.split('v=')[-1].split('&')[0] if 'v=' in video.url else video.url.split('/')[-1] %}
+                            <iframe 
+                                src="https://www.youtube.com/embed/{{ video_id }}" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        {% elif 'vimeo.com' in video.url %}
+                            <!-- Vimeo embed -->
+                            {% set video_id = video.url.split('/')[-1] %}
+                            <iframe 
+                                src="https://player.vimeo.com/video/{{ video_id }}" 
+                                frameborder="0" 
+                                allow="autoplay; fullscreen; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        {% else %}
+                            <!-- URL direta de vídeo -->
+                            <video controls preload="metadata" poster="{{ video.thumbnail or '' }}">
+                                <source src="{{ video.url }}">
+                                Seu navegador não suporta o elemento de vídeo.
+                            </video>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                
+                <div class="video-info">
+                    <div class="video-rating">
+                        {% for i in range(video.rating) %}⭐{% endfor %}
+                    </div>
+                    <div class="video-author">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="videos-empty">
+            <div class="empty-icon">🎥</div>
+            <h3>Em breve!</h3>
+            <p>Estamos coletando depoimentos em vídeo incríveis dos nossos clientes.</p>
+            <p>Seja você o primeiro a participar do passeio e compartilhar sua experiência!</p>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary">Fazer Reserva</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="video-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Quer Compartilhar Sua Experiência?</h2>
+            <p class="cta-text">
+                Após o passeio, envie seu depoimento em vídeo e ganhe 10% de desconto
+                na próxima reserva!
+            </p>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary btn-large">Participar do Passeio</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.page-hero {
+    padding: 10rem 0 6rem;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(124, 77, 255, 0.15) 0%, transparent 70%);
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.page-subtitle {
+    font-size: 1.3rem;
+    color: var(--color-text-dim);
+}
+
+.video-testimonials {
+    padding: 4rem 0;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 3rem;
+}
+
+.video-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent-bright);
+    box-shadow: 0 20px 60px rgba(124, 77, 255, 0.3);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.video-wrapper video,
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.video-wrapper video {
+    object-fit: cover;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-rating {
+    color: var(--color-star);
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 10px var(--color-star);
+}
+
+.video-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    color: var(--color-white);
+}
+
+.video-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-family: var(--font-display);
+}
+
+.video-author strong {
+    font-size: 1rem;
+    color: var(--color-accent);
+}
+
+.video-author span {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+}
+
+.videos-empty {
+    text-align: center;
+    padding: 6rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+}
+
+.videos-empty h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.videos-empty p {
+    font-size: 1.1rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.videos-empty .btn {
+    margin-top: 2rem;
+}
+
+.video-cta {
+    padding: 6rem 0;
+    background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+</style>
+{% endblock %}

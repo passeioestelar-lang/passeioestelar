@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Galeria - Chapada Mística{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1 class="page-title">Galeria</h1>
+        <p class="page-subtitle">Momentos mágicos capturados em nossos passeios</p>
+    </div>
+</section>
+
+<section class="gallery-full">
+    <div class="container">
+        {% if gallery %}
+        <div class="gallery-masonry">
+            {% for item in gallery %}
+            <div class="gallery-full-item">
+                {% if item.type == 'image' %}
+                <img src="{{ item.url }}" alt="{{ item.title }}" loading="lazy">
+                {% elif item.type == 'video' %}
+                <video controls>
+                    <source src="{{ item.url }}" type="video/mp4">
+                </video>
+                {% endif %}
+                <div class="gallery-full-overlay">
+                    <h3>{{ item.title }}</h3>
+                    {% if item.description %}
+                    <p>{{ item.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="gallery-empty">
+            <p>Em breve teremos fotos e vídeos incríveis para compartilhar!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="gallery-cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Quer Fazer Parte da Nossa Galeria?</h2>
+            <p class="cta-text">
+                Reserve seu passeio e tenha fotos profissionais incríveis sob as estrelas
+            </p>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary btn-large">Fazer Reserva</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.gallery-full {
+    padding: 4rem 0;
+}
+
+.gallery-masonry {
+    columns: 3;
+    column-gap: 1.5rem;
+}
+
+.gallery-full-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    break-inside: avoid;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.gallery-full-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+}
+
+.gallery-full-item img,
+.gallery-full-item video {
+    width: 100%;
+    display: block;
+    transition: var(--transition);
+}
+
+.gallery-full-item:hover img,
+.gallery-full-item:hover video {
+    transform: scale(1.05);
+}
+
+.gallery-full-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-full-item:hover .gallery-full-overlay {
+    opacity: 1;
+}
+
+.gallery-full-overlay h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-full-overlay p {
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+}
+
+.gallery-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-dim);
+    font-size: 1.2rem;
+}
+
+.gallery-cta-section {
+    padding: 4rem 0;
+    background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+}
+
+@media (max-width: 1024px) {
+    .gallery-masonry {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-masonry {
+        columns: 1;
+    }
+}
+</style>
+{% endblock %}

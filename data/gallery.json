@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "title": "Céu Estrelado",
+    "url": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800",
+    "type": "image",
+    "description": "Via Láctea sobre a Chapada"
+  },
+  {
+    "id": 2,
+    "title": "Fotografia Noturna",
+    "url": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800",
+    "type": "image",
+    "description": "Sessão de fotos com as estrelas"
+  },
+  {
+    "id": 1768695079.818935,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211119_WhatsApp_Image_2026-01-17_at_21.02.52.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695199.548847,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211319_WhatsApp_Image_2026-01-17_at_21.02.521.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695214.628121,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211334_WhatsApp_Image_2026-01-17_at_21.02.522.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695228.245555,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211348_WhatsApp_Image_2026-01-17_at_21.02.53.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695241.088353,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211401_WhatsApp_Image_2026-01-17_at_21.02.531.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695263.038615,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211423_WhatsApp_Image_2026-01-17_at_21.02.532.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695320.874862,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211520_WhatsApp_Image_2026-01-17_at_21.02.533.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695335.112456,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211535_WhatsApp_Image_2026-01-17_at_21.02.534.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695350.110421,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211550_WhatsApp_Image_2026-01-17_at_21.02.54.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695367.37913,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211607_WhatsApp_Image_2026-01-17_at_21.02.541.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695379.543855,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211619_WhatsApp_Image_2026-01-17_at_21.02.542.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695393.519353,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211633_WhatsApp_Image_2026-01-17_at_21.02.543.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695467.250608,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211747_WhatsApp_Image_2026-01-17_at_21.16.03.jpeg",
+    "uploaded": true
+  },
+  {
+    "id": 1768695482.334161,
+    "title": ".",
+    "type": "image",
+    "description": "",
+    "url": "/static/uploads/20260117_211802_WhatsApp_Image_2026-01-17_at_21.16.031.jpeg",
+    "uploaded": true
+  }
+]
