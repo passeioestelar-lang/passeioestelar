@@ -359,5 +359,4 @@ if __name__ == '__main__':
         sample_videos = []
         save_data('video_testimonials.json', sample_videos)
     
-    if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
