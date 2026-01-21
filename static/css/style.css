@@ -469,12 +469,6 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--color-text-dim);
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
 }
 
 .scroll-indicator {
