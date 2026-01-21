@@ -312,6 +312,7 @@ body {
     border: none;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .btn::before {
@@ -325,6 +326,7 @@ body {
     background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
+    z-index: -1;
 }
 
 .btn:hover::before {
@@ -403,15 +405,13 @@ body {
     font-size: 0.85rem;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     backdrop-filter: blur(10px);
-    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
 
 .hero-title {
     font-family: var(--font-display);
