@@ -28,8 +28,6 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
-    width: 100%;
 }
 
 body {
@@ -38,8 +36,6 @@ body {
     color: var(--color-text);
     line-height: 1.7;
     overflow-x: hidden;
-    width: 100%;
-    position: relative;
 }
 
 /* ========================================
@@ -623,9 +619,10 @@ section {
 }
 
 .highlight-item {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .highlight-number {
@@ -635,18 +632,33 @@ section {
     color: var(--color-accent);
     opacity: 0.3;
     line-height: 1;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.highlight-content {
+    margin: 0;
+    padding: 0;
 }
 
 .highlight-content h3 {
     font-family: var(--font-display);
     font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
+    padding: 0;
     letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .highlight-content p {
     color: var(--color-text-dim);
-    line-height: 1.7;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .highlights-image {
@@ -963,128 +975,35 @@ section {
    RESPONSIVE
    ======================================== */
 @media (max-width: 768px) {
-    /* Prevenir scroll horizontal */
-    body {
-        max-width: 100vw;
-        overflow-x: hidden;
-    }
-    
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        max-width: 100%;
-    }
-    
-    /* Menu mobile */
-    .navbar {
-        padding: 1rem;
-    }
-    
     .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        background: rgba(10, 14, 39, 0.98);
-        backdrop-filter: blur(20px);
-        padding: 2rem 1rem;
-        flex-direction: column;
-        gap: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 9998;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-    
-    .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .nav-link {
-        font-size: 1.1rem;
-        padding: 0.5rem 0;
-        text-align: center;
+        display: none;
     }
     
     .nav-toggle {
         display: flex;
-        z-index: 9999;
-        position: relative;
     }
     
-    .nav-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .nav-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .nav-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    /* Hero section */
     .hero {
-        padding: 7rem 1rem 4rem;
-        min-height: auto;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
+        padding: 6rem 1rem 4rem;
     }
     
     .hero-buttons {
         flex-direction: column;
-        width: 100%;
     }
     
-    .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    /* Sections */
     section {
-        padding: 3rem 0;
+        padding: 4rem 0;
     }
     
-    .section-title {
-        font-size: 2rem;
+    .highlights-content {
+        grid-template-columns: 1fr;
     }
     
-    /* Grids */
-    .highlights-content,
     .experience-grid,
     .testimonials-grid,
     .gallery-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
-    
-    /* Cards */
-    .experience-card,
-    .testimonial-card {
-        max-width: 100%;
-    }
-    
-    /* Footer */
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-    }
-}
 }
 
 /* ========================================
@@ -1184,56 +1103,4 @@ body {
 /* IMPORTANTE: Remover transform de sections que podem causar novo contexto */
 section {
     transform: none !important;
-}
-
-/* ========================================
-   LANDSCAPE MOBILE
-   ======================================== */
-@media (max-width: 896px) and (orientation: landscape) {
-    /* Navbar mais compacta em landscape */
-    .navbar {
-        padding: 0.5rem 1rem;
-    }
-    
-    .logo-image {
-        height: 50px;
-    }
-    
-    .nav-menu {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        background: transparent;
-        padding: 0;
-        gap: 1rem;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        border: none;
-        box-shadow: none;
-    }
-    
-    .nav-toggle {
-        display: none;
-    }
-    
-    .nav-link {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.8rem;
-    }
-    
-    .hero {
-        min-height: 100vh;
-        padding: 5rem 1rem 2rem;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 }
