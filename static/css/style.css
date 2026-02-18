@@ -294,6 +294,72 @@ body {
     transition: var(--transition-fast);
 }
 
+/* Estado ativo do hambúrguer - animação para X */
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menu mobile aberto */
+@media (max-width: 768px) {
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 14, 39, 0.98);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        animation: menuSlideDown 0.3s ease-out;
+        z-index: 9999;
+    }
+
+    @keyframes menuSlideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-menu.active .nav-link {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu.active .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu.active .nav-link-cta {
+        margin: 1rem 2rem 0.5rem;
+        width: calc(100% - 4rem);
+        text-align: center;
+        border-radius: 50px;
+        border-bottom: none;
+    }
+}
+
 /* ========================================
    BUTTONS
    ======================================== */
