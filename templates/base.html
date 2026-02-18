@@ -85,43 +85,6 @@
         </div>
     </footer>
 
-    <script>
-        // ── Menu Hambúrguer ──────────────────────────────────────────────
-        const navToggle = document.getElementById('navToggle');
-        const navMenu   = document.getElementById('navMenu');
-
-        navToggle.addEventListener('click', function () {
-            const isOpen = navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active', isOpen);
-            navToggle.setAttribute('aria-expanded', isOpen);
-            // Impede o scroll do body enquanto o menu estiver aberto
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        });
-
-        // Fecha o menu ao clicar em qualquer link
-        navMenu.querySelectorAll('.nav-link').forEach(function (link) {
-            link.addEventListener('click', function () {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Fecha o menu ao clicar fora dele
-        document.addEventListener('click', function (e) {
-            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // ── Navbar scroll ────────────────────────────────────────────────
-        window.addEventListener('scroll', function () {
-            document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
