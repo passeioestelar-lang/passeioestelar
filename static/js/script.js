@@ -12,10 +12,39 @@ window.addEventListener('scroll', function() {
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
-if (navToggle) {
-    navToggle.addEventListener('click', function() {
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
+        
+        // Prevenir scroll do body quando menu aberto
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Fechar menu ao clicar em um link
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 }
 
@@ -181,34 +210,6 @@ style.textContent = `
     
     .lightbox-close:hover {
         transform: scale(1.2);
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(10, 14, 39, 0.98);
-            padding: 2rem;
-            gap: 1.5rem;
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
     }
 `;
 document.head.appendChild(style);
