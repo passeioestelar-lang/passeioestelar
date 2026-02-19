@@ -72,8 +72,8 @@
                 Leandro é guia estelar, fotógrafo e terapeuta, responsável pelo emocionante Nascer do Sol Terapêutico, um momento de renovação e cura.
                 Frankilin é guia estelar e apaixonado por astronomia e histórias da Chapada, tornando cada noite uma verdadeira viagem pelo cosmos.
                 Nossa missão é fazer você enxergar o céu como nunca antes e viver uma experiência que ficará para sempre na memória.
-                <li>✨ Passeio Estelar: mais que um passeio, uma experiência pelo cosmos.</li>
                 </p>
+                <p>✨ Passeio Estelar: mais que um passeio, uma experiência pelo cosmos.</p>
             </div>
         </div>
         <div class="about-cta">
@@ -128,9 +128,8 @@
 }
 
 .about-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
+    display: flex;
+    justify-content: center;
     margin-bottom: 4rem;
 }
 
@@ -140,6 +139,8 @@
     border-radius: 20px;
     padding: 2.5rem;
     backdrop-filter: blur(10px);
+    width: fit-content;
+    max-width: 600px;
 }
 
 .about-icon {
